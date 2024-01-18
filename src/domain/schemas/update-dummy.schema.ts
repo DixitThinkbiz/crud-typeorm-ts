@@ -1,10 +1,12 @@
+// Import Joi for validation
 import Joi from "joi";
 
+// Validation schema for updating dummy data
 export const dummySchemaPatch = Joi.object({
-    id:Joi.number().required(),
+    // Validate id: must be a number and is required
+    id: Joi.number().required(),
+    // Validate email: must be a valid email format
     email: Joi.string().email(),
-    phoneNo: Joi.string().length(10),
-    password: Joi.string().min(6),
+    // Validate description: must be a string with a minimum length of 1 character
     description: Joi.string().min(1)
-}).options({ allowUnknown: true });
-
+})
