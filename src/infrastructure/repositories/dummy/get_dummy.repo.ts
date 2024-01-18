@@ -1,5 +1,5 @@
 import { AppDataSource } from "../../orm/typeorm/config/ormconfig";
-import { t_dummy } from "../../orm/typeorm/entities/task";
+import { t_dummy } from "../../orm/typeorm/entities/dummy";
 
 
 export const selectDummy = async (id: number) => {

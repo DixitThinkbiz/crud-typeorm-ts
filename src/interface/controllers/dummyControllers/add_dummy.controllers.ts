@@ -1,8 +1,7 @@
 import  Express  from "express";
-import { addDummyUsecase } from "../../../application/use_cases/dummy/addUseCase";
+import { addDummyUsecase } from "../../../application/use_cases/dummy/add_dummy.usecase";
 export const addDummyController = async (req : Express.Request, res : Express.Response) => {
   try {
-    console.log("Started"); 
     await addDummyUsecase(req.body)
     res.status(201).json({message:"User Added"});
   }

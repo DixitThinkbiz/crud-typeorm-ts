@@ -1,6 +1,6 @@
 import { pool } from "../../../../../crud-sql/src/repository/index";
 import { AppDataSource } from "../../orm/typeorm/config/ormconfig";
-import { t_dummy } from "../../orm/typeorm/entities/task";
+import { t_dummy } from "../../orm/typeorm/entities/dummy";
 export const addDummyData = async (userData : any) => {
     await AppDataSource
         .getRepository(t_dummy)

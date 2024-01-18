@@ -1,6 +1,6 @@
 import  Express  from "express";
-import { addDummyUsecase } from "../../../application/use_cases/dummy/addUseCase";
-import { deleteDummyUsecase } from "../../../application/use_cases/dummy/deleteUseCase";
+import { addDummyUsecase } from "../../../application/use_cases/dummy/add_dummy.usecase";
+import { deleteDummyUsecase } from "../../../application/use_cases/dummy/delete_dummy.usecase";
 export const deleteDummyController = async (req : Express.Request, res : Express.Response) => {
   try {
     await deleteDummyUsecase(Number(req.params.id));

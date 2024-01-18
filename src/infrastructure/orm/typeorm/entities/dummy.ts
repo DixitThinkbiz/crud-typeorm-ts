@@ -11,7 +11,7 @@ export class t_dummy {
     @Column()
     email!: string;
 
-    @Column()
+    @Column({nullable: true})
     description?: string;
     
     @CreateDateColumn()

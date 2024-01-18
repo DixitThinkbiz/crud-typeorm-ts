@@ -1,5 +1,5 @@
 import { AppDataSource } from "../../orm/typeorm/config/ormconfig";
-import { t_dummy } from "../../orm/typeorm/entities/task";
+import { t_dummy } from "../../orm/typeorm/entities/dummy";
 
 export const checkUserEmailExist = async (email :string) => {
     const selectedDummy =await AppDataSource
@@ -7,7 +7,7 @@ export const checkUserEmailExist = async (email :string) => {
     .createQueryBuilder()
     .select("id").
     where("email = :email", { email : email })
-    .getRawMany();
+    .getRawOne();
     console.log("check"+selectedDummy)
     return selectedDummy;
 }

@@ -1,6 +1,6 @@
 
 import  Express  from "express";
-import { getDummyUsecase } from "../../../application/use_cases/dummy/get_usecase";
+import { getDummyUsecase } from "../../../application/use_cases/dummy/get_dummy.usecase";
 export const getDummyController = async (req : Express.Request, res: Express.Response) => {
   try {
     const selectedDummy=await getDummyUsecase(Number(req.params.id));
@@ -8,7 +8,7 @@ export const getDummyController = async (req : Express.Request, res: Express.Res
   }
   catch (error ) {
     if(error instanceof Error){
-        return res.status(404).json({message:"User not found"})
+        return res.status(404).json({message:error.message})
     }
     console.log(error)
     res.status(500).json({ message: "Something went wrong" })
