@@ -1,10 +1,11 @@
 // Import necessary function
+import { dummy } from "../../../domain/models/dummy";
 import { selectDummy } from "../../../infrastructure/repositories/dummy/get_dummy.repo";
 
 // Get Dummy Usecase
 export const getDummyUsecase = async (id: number) => {
     // Retrieve dummy data based on the provided ID
-    const selectedDummy: any = await selectDummy(id);
+    const selectedDummy: dummy[] = await selectDummy(id);
 
     // Check if an ID is provided
     if (id) {

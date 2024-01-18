@@ -1,4 +1,5 @@
 // Import necessary database configurations and entity
+import { dummy } from "../../../domain/models/dummy";
 import { AppDataSource } from "../../orm/typeorm/config/ormconfig";
 import { t_dummy } from "../../orm/typeorm/entities/dummy";
 
@@ -8,7 +9,7 @@ export const selectDummy = async (id: number) => {
     const condition = id ? "id = :id" : "true";
 
     // Use the TypeORM query builder to select specific columns from the t_dummy table
-    const selectedDummy = await AppDataSource
+    const selectedDummy: dummy[] = await AppDataSource
         .getRepository(t_dummy)
         .createQueryBuilder()
         .select("id, name, email, description")

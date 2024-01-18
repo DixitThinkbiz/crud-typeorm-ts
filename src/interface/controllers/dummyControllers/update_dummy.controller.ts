@@ -1,19 +1,14 @@
 // Import necessary modules and use case
 import Express from "express";
 import { updateDummyUsecase } from "../../../application/use_cases/dummy/update__dummy.usecase";
+import { dummy } from "../../../domain/models/dummy";
 
 // Controller for updating dummy user data
 export const updateUserdata = async (req: Express.Request, res: Express.Response) => {
   try {
-    // Log the start of the update process (optional)
-    console.log("Start of update process");
-
     // Call the updateDummyUsecase to handle updating dummy user data
-    await updateDummyUsecase(req.body);
-
-    // Log the end of the update process (optional)
-    console.log("End of update process");
-
+    const dummyData: dummy=req.body;
+    await updateDummyUsecase(dummyData);
     // Respond with a success message
     res.status(201).json({ message: "User Updated" });
   } catch (error) {

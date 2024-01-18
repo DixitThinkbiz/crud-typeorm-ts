@@ -1,11 +1,12 @@
 // Import necessary database configurations and entity
+import { dummy } from "../../../domain/models/dummy";
 import { AppDataSource } from "../../orm/typeorm/config/ormconfig";
 import { t_dummy } from "../../orm/typeorm/entities/dummy";
 
 // Check if a user with the specified email exists in the database
 export const checkUserEmailExist = async (email: string) => {
     // Query the t_dummy table to find a user with the given email
-    const selectedDummy = await AppDataSource
+    const selectedDummy  = await AppDataSource
         .getRepository(t_dummy)
         .createQueryBuilder()
         .select("id")
@@ -13,5 +14,5 @@ export const checkUserEmailExist = async (email: string) => {
         .getRawOne();
 
     // Return the selected user data
-    return selectedDummy;
+    return selectedDummy as dummy;
 }
