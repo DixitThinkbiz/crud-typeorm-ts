@@ -31,4 +31,5 @@ export class t_dummy {
     // Column for delete timestamp (soft delete)
     @DeleteDateColumn()
     deletedAt!: string;
+    
 }

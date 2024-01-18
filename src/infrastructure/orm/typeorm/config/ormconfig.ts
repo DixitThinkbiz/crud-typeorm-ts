@@ -1,14 +1,16 @@
 // Import DataSource from TypeORM
 import { DataSource } from 'typeorm';
+import dotenv from 'dotenv';
+dotenv.config();
 // Database connection configuration
 export const AppDataSource = new DataSource({
     // Database type (MySQL in this case)
     type: "mysql",
     // Database connection details
-    host: "localhost",
-    username: "root",
-    password: "Log(e)=1",
-    database: "crud_test",
+    host: process.env.HOST,
+    username: process.env.USER, 
+    password: process.env.PASSWORD,
+    database: process.env.DB,
     // Synchronize database schema with entities
     synchronize: true,
     // Enable logging for debugging

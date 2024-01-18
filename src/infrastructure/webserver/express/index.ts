@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json());
 
 // Set the port for the server
-const port = 3000;
+const port = process.env.PORT;
 
 // Define a basic route for testing
 app.get("/", (req, res) => {

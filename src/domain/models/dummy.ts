@@ -1,4 +1,4 @@
-export type dummy ={
+export type Dummy ={
     id : number;
     name : string; 
     email : string;

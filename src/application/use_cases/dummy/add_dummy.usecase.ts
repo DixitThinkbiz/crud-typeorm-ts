@@ -1,12 +1,11 @@
 // Import necessary functions
-import { checkUserEmailExist } from "../../../infrastructure/repositories/dummy/check_dummy_data_exist.repo";
-import { addDummyData } from "../../../infrastructure/repositories/dummy/add_dummy.repo";
-import { dummy } from "../../../domain/models/dummy";
+import { Dummy } from "../../../domain/models/dummy";
+import { DummyRepositoryPort } from "../../port/repositories/dummy_reop.port";
 
 // Add Dummy Usecase
-export const addDummyUsecase = async (dummyData: dummy) => {
+export const addDummyUsecase = async (DummyRepo:DummyRepositoryPort,dummyData: Dummy) => {
     // Check if a dummy with the specified email already exists
-    const selectedDummy : dummy= await checkUserEmailExist(dummyData.email);
+    const selectedDummy : Dummy= await DummyRepo.checkDummyEmailExist(dummyData.email);
 
     // If a dummy with the same email exists, throw an error
     if (selectedDummy) {
@@ -14,5 +13,5 @@ export const addDummyUsecase = async (dummyData: dummy) => {
     }
 
     // Add the dummy data
-    await addDummyData(dummyData);
+    await DummyRepo.addDummy(dummyData);
 }
