@@ -20,6 +20,10 @@ export const constants = {
         status: 200,
         message: "User updated successfully.", 
       },
+      EMPTY_TABLE: {
+        "status": 204,
+        "message": "Table is empty."
+      },
       INVALID_INPUT: {
         status: 400,
         message: "Invalid input provided.",

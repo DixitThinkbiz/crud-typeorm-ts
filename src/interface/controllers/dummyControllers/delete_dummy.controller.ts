@@ -9,7 +9,7 @@ export const deleteDummyController = async (req: Request, res: Response) => {
   try {
     // Call the deleteDummyUsecase to handle the deletion of the dummy user
     await deleteDummyUsecase(DummyRepo, Number(req.params.id));
-    return res.sendStatus(200);
+    return res.sendStatus(constants.response.SUCCESS.status);
   } catch (error) {
     // Handle errors, return appropriate status codes and messages
     if (error instanceof Error) {
@@ -17,6 +17,6 @@ export const deleteDummyController = async (req: Request, res: Response) => {
         return res.status(constants.response.USER_NOT_FOUND.status).
           json(constants.response.USER_NOT_FOUND);
     }
-    res.status(500).json({ message: "Something went wrong" });
+    res.status(constants.response.SERVER_ERROR.status).json(constants.response.SERVER_ERROR);
   }
 };

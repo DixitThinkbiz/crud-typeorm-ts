@@ -22,7 +22,7 @@ export const getDummyUsecase = async (getDummyRepo :DummyRepositoryPort,id: numb
         if (selectedDummy.length) {
             return selectedDummy;
         } else {
-            throw new Error("Table is empty");
+            throw new Error("EMPTY_TABLE");
         }
     }
 }

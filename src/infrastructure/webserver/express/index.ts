@@ -3,7 +3,7 @@ import express from "express";
 import dotenv from 'dotenv';
 import { AppDataSource } from "../../orm/typeorm/config/ormconfig";
 import { router } from "../../../interface/routes/dummy_routes";
-
+import "reflect-metadata"
 // Load environment variables from the .env file
 dotenv.config();
 

@@ -23,6 +23,6 @@ export const addDummyController = async (req: Request, res: Response) => {
       }
       
     }
-    res.status(500).json({ message: "Something went wrong" });
+    res.status(constants.response.SERVER_ERROR.status).json(constants.response.SERVER_ERROR);
   }
 };
