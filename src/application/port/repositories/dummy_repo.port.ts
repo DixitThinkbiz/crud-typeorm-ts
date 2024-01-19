@@ -1,6 +1,5 @@
 // Import necessary domain model
 import { Dummy } from "../../../domain/models/dummy";
-
 // Port defining the contract for interacting with dummy data in the repository
 export type DummyRepositoryPort = {
   // Retrieve dummy data by ID

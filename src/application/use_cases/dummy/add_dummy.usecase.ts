@@ -1,7 +1,7 @@
 // Import necessary functions
 import { Dummy } from "../../../domain/models/dummy";
 import { constants } from "../../../infrastructure/config/constant";
-import { DummyRepositoryPort } from "../../port/repositories/dummy_reop.port";
+import { DummyRepositoryPort } from "../../port/repositories/dummy_repo.port";
 
 // Add Dummy Usecase
 export const addDummyUsecase = async (DummyRepo:DummyRepositoryPort,dummyData: Dummy) => {

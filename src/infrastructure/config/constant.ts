@@ -2,7 +2,7 @@ export const constants = {
   SUCCESS_STATUS: {
     OK: 200,
     CREATED: 201,
-    NO_CONTENT: 204,
+   
     // Add more success status codes as needed
   },
   

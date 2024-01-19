@@ -2,7 +2,7 @@
 import { Dummy } from "../../../domain/models/dummy";
 import { constants } from "../../../infrastructure/config/constant";
 import { DummyRepo} from "../../../infrastructure/repositories/dummy/dummy.repo";
-import { DummyRepositoryPort } from "../../port/repositories/dummy_reop.port";
+import { DummyRepositoryPort } from "../../port/repositories/dummy_repo.port";
 
 // Delete Dummy Usecase
 export const deleteDummyUsecase = async (deleteDummyRepo: DummyRepositoryPort,id: number) => {
