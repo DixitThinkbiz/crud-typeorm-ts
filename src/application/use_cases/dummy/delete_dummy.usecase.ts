@@ -1,5 +1,6 @@
 // Import necessary functions
 import { Dummy } from "../../../domain/models/dummy";
+import { constants } from "../../../infrastructure/config/constant";
 import { DummyRepo} from "../../../infrastructure/repositories/dummy/dummy.repo";
 import { DummyRepositoryPort } from "../../port/repositories/dummy_reop.port";
 
@@ -14,6 +15,6 @@ export const deleteDummyUsecase = async (deleteDummyRepo: DummyRepositoryPort,id
         await DummyRepo.deleteDummy(id);
     } else {
         // If no dummy with the specified ID exists, throw an error
-        throw new Error("USER_NOT_FOUND");
+        throw new Error(constants.ERROR_MESSAGE.USER_NOT_FOUND);
     }
 }

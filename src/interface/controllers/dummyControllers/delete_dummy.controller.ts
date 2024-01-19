@@ -9,14 +9,14 @@ export const deleteDummyController = async (req: Request, res: Response) => {
   try {
     // Call the deleteDummyUsecase to handle the deletion of the dummy user
     await deleteDummyUsecase(DummyRepo, Number(req.params.id));
-    return res.sendStatus(constants.response.SUCCESS.status);
+    return res.sendStatus(constants.SUCCESS_STATUS.NO_CONTENT);
   } catch (error) {
     // Handle errors, return appropriate status codes and messages
     if (error instanceof Error) {
-      if (error.message == "USER_NOT_FOUND")
-        return res.status(constants.response.USER_NOT_FOUND.status).
-          json(constants.response.USER_NOT_FOUND);
+      if (error.message ===constants.ERROR_MESSAGE.USER_NOT_FOUND)
+        return res.status(constants.ERROR_STATUS.NOT_FOUND).
+          json({Message:constants.ERROR_MESSAGE.USER_NOT_FOUND});
     }
-    res.status(constants.response.SERVER_ERROR.status).json(constants.response.SERVER_ERROR);
+    res.status(constants.ERROR_STATUS.INTERNAL_SERVER_ERROR).json({Message:constants.ERROR_MESSAGE.INTERNAL_SERVER_ERROR});
   }
 };

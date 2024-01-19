@@ -12,18 +12,18 @@ export const updateUserdata = async (req: Request, res: Response) => {
     const dummyData: Dummy=req.body;
     await updateDummyUsecase(DummyRepo,dummyData);
     // Respond with a success message
-    res.status(constants.response.USER_UPDATED.status).json(constants.response.USER_UPDATED);
+    res.status(constants.SUCCESS_STATUS.OK).json({Message:constants.SUCCESS_MESSAGE.USER_UPDATED});
   } catch (error) {
     // Handle errors, return appropriate status codes and messages
     if (error instanceof Error) {
-      if(error.message=="USER_NOT_FOUND"){
-        return res.status(constants.response.USER_NOT_FOUND.status).json(constants.response.USER_NOT_FOUND);
+      if(error.message===constants.ERROR_MESSAGE.USER_NOT_FOUND){
+        return res.status(constants.ERROR_STATUS.NOT_FOUND).json({Message:constants.ERROR_MESSAGE.USER_NOT_FOUND});
       }
-      if(error.message=="USER_ALREADY_EXISTS"){
-        return res.status(constants.response.USER_ALREADY_EXISTS.status).json(constants.response.USER_ALREADY_EXISTS);
+      if(error.message===constants.ERROR_MESSAGE.USER_ALREADY_EXISTS){
+        return res.status(constants.ERROR_STATUS.CONFLICT).json({Message:constants.ERROR_MESSAGE.USER_ALREADY_EXISTS});
 
       }
     }
-    res.status(constants.response.SERVER_ERROR.status).json(constants.response.SERVER_ERROR);
+    res.status(constants.ERROR_STATUS.INTERNAL_SERVER_ERROR).json({Message:constants.ERROR_MESSAGE.INTERNAL_SERVER_ERROR});
   }
 };

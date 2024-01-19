@@ -1,5 +1,6 @@
 // Import necessary functions
 import { Dummy } from "../../../domain/models/dummy";
+import { constants } from "../../../infrastructure/config/constant";
 import { DummyRepositoryPort } from "../../port/repositories/dummy_reop.port";
 
 // Update Dummy Usecase
@@ -14,12 +15,12 @@ export const updateDummyUsecase = async (DummyRepo:DummyRepositoryPort,dummyData
        
         // If another dummy with the same email exists, throw an error
         if (selectedDummy) {
-            throw new Error("USER_ALREADY_EXISTS");
+            throw new Error(constants.ERROR_MESSAGE.USER_ALREADY_EXISTS);
         }
         // Update the dummy data
         await DummyRepo.updateDummy(dummyData);
     } else {
         // If the dummy data does not exist, throw an error
-        throw new Error("USER_NOT_FOUND");
+        throw new Error(constants.ERROR_MESSAGE.USER_NOT_FOUND);
     }
 }

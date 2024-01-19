@@ -12,7 +12,7 @@ export const AppDataSource = new DataSource({
     password: process.env.PASSWORD,
     database: process.env.DB,
     // Synchronize database schema with entities
-    synchronize: true,
+    synchronize: false,
     // Enable logging for debugging
     logging: true,
     // Specify the entities (database tables) to be managed by TypeORM

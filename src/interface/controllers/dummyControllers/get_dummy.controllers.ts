@@ -10,17 +10,15 @@ export const getDummyController = async (req: Request, res: Response) => {
   try {
     // Call the getDummyUsecase to handle retrieving dummy user information
     const selectedDummy = await getDummyUsecase(DummyRepo, Number(req.params.id));
-    return res.status(constants.response.SUCCESS.status).json(selectedDummy);
+    return res.status(constants.SUCCESS_STATUS.OK).json(selectedDummy);
   } catch (error) {
     // Handle errors, return appropriate status codes and messages
     if (error instanceof Error) {
-      if (error.message == "USER_NOT_FOUND") {
-        return res.status(constants.response.USER_NOT_FOUND.status).json({ message: constants.response.USER_NOT_FOUND });
-      }
-      if (error.message == "EMPTY_TABLE") {
-        return res.status(constants.response.EMPTY_TABLE.status).json({ message: constants.response.EMPTY_TABLE });
+      if (error.message===constants.ERROR_MESSAGE.USER_NOT_FOUND) {
+        return res.status(constants.ERROR_STATUS.NOT_FOUND).json({Message: constants.ERROR_MESSAGE.USER_NOT_FOUND});
       }
     }
-    res.status(constants.response.SERVER_ERROR.status).json(constants.response.SERVER_ERROR);
+    
+    res.status(constants.ERROR_STATUS.INTERNAL_SERVER_ERROR).json({Message:constants.ERROR_MESSAGE.INTERNAL_SERVER_ERROR});
   }
 };
