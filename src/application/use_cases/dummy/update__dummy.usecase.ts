@@ -14,12 +14,12 @@ export const updateDummyUsecase = async (DummyRepo:DummyRepositoryPort,dummyData
        
         // If another dummy with the same email exists, throw an error
         if (selectedDummy) {
-            throw new Error("User exists");
+            throw new Error("USER_ALREADY_EXISTS");
         }
         // Update the dummy data
         await DummyRepo.updateDummy(dummyData);
     } else {
         // If the dummy data does not exist, throw an error
-        throw new Error("User not found");
+        throw new Error("USER_NOT_FOUND");
     }
 }

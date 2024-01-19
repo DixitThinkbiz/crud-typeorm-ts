@@ -2,6 +2,8 @@
 import Express,{Request,Response}  from "express";
 import { getDummyUsecase } from "../../../application/use_cases/dummy/get_dummy.usecase";
 import { DummyRepo } from "../../../infrastructure/repositories/dummy/dummy.repo";
+import { constants } from "../../../infrastructure/config/constant";
+
 
 // Controller for retrieving dummy user information
 export const getDummyController = async (req: Request, res: Response) => {
@@ -12,7 +14,10 @@ export const getDummyController = async (req: Request, res: Response) => {
   } catch (error) {
     // Handle errors, return appropriate status codes and messages
     if (error instanceof Error) {
-      return res.status(404).json({ message: error.message });
+      if(error.message=="USER_NOT_FOUND")
+      {
+        return res.status(constants.response.USER_NOT_FOUND.status).json({ message: constants.response.USER_NOT_FOUND });
+      }
     }
     console.log(error);
     res.status(500).json({ message: "Something went wrong" });

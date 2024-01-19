@@ -14,7 +14,7 @@ export const getDummyUsecase = async (getDummyRepo :DummyRepositoryPort,id: numb
         if (selectedDummy.length) {
             return selectedDummy;
         } else {
-            throw new Error("User not found");
+            throw new Error("USER_NOT_FOUND");
         }
     } else {
         // If no ID is provided, check if the table has any data

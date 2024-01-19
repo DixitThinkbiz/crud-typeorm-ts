@@ -14,6 +14,6 @@ export const deleteDummyUsecase = async (deleteDummyRepo: DummyRepositoryPort,id
         await DummyRepo.deleteDummy(id);
     } else {
         // If no dummy with the specified ID exists, throw an error
-        throw new Error("User does not exist");
+        throw new Error("USER_NOT_FOUND");
     }
 }

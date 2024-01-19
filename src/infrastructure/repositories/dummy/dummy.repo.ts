@@ -15,12 +15,12 @@ export const DummyRepo: DummyRepositoryPort = {
             .getRepository(t_dummy)
             .createQueryBuilder()
             .select("id, name, email, description")
-            .where(id ? "id = :id" : "true", { id: id })
+            .where(id ? "id = :id" : "true", { id: id },)
             .getRawMany();
-
-
         // Return the selected dummy data
-        return selectedDummy;
+
+        return selectedDummy as Dummy[];
+        // return selectedDummy;
     },
     deleteDummy: async (id) => {
         // Define a condition for the query based on the presence of the ID 

@@ -8,11 +8,3 @@ export type DummyRepositoryPort={
     addDummy(dummyData: Dummy):Promise<void>;
     checkDummyEmailExist(email:string):Promise<Dummy>;
 }
-
-// export type deleteDummyRepositoryPort={
-//     deleteDummy(id:number):Promise<void>;  
-// }
-
-// export type updateDummyRepositoryPort={
-//     updateDummy():Promise<void>
-// }
