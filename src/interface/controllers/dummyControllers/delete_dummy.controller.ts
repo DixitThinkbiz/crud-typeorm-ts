@@ -6,7 +6,7 @@ import { constants } from "../../../infrastructure/config/constant";
 import { displayFunction } from "./utils";
 
 // Controller for deleting a dummy user
-export const deleteDummyController = async (req: Request, res: Response) => {
+export const deleteDummyController = (DummyRepo)=>async (req: Request, res: Response) => {
   try {
     // Call the deleteDummyUsecase to handle the deletion of the dummy user
     await deleteDummyUsecase(DummyRepo, Number(req.params.id));

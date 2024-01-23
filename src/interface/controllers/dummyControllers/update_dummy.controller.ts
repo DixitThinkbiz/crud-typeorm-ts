@@ -7,7 +7,7 @@ import { constants } from "../../../infrastructure/config/constant";
 import { displayFunction } from "./utils";
 
 // Controller for updating dummy user data
-export const updateUserdata = async (req: Request, res: Response) => {
+export const updateUserdata =(DummyRepo)=> async (req: Request, res: Response) => {
   try {
     // Call the updateDummyUsecase to handle updating dummy user data
     const dummyData: Dummy=req.body;

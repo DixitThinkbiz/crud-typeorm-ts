@@ -94,7 +94,6 @@
         }
       }
     },
-    
     "/user/{id}": {
       "get": {
         "summary": "Get user by ID",
@@ -114,7 +113,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "#/components/schemas/user"
                 }
               }
             }
@@ -124,15 +123,17 @@
           }
         }
       },
-      
       "delete": {
         "summary": "Delete user by ID",
         "parameters": [
           {
-            "name": "id",
             "in": "path",
-            "required": true
-            
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
           }
         ],
         "responses": {
@@ -161,13 +162,16 @@
             "type": "string"
           }
         },
-        "required": ["name", "email"]
+        "required": [
+          "name",
+          "email"
+        ]
       },
       "patchUser": {
-        "type": "object",
+        "type": "object", 
         "properties": {
-          "id":{
-            "type":"number"
+          "id": {
+            "type": "number"
           },
           "name": {
             "type": "string"
@@ -179,9 +183,10 @@
             "type": "string"
           }
         },
-        "required": ["id"]
+        "required": [
+          "id"
+        ]
       }
-
     }
   }
 }

@@ -1,13 +1,14 @@
 // Import necessary modules and use case
 import Express, { Request, Response } from "express";
 import { getDummyUsecase } from "../../../application/use_cases/dummy/get_dummy.usecase";
-import { DummyRepo } from "../../../infrastructure/repositories/dummy/dummy.repo";
 import { constants } from "../../../infrastructure/config/constant";
 import { displayFunction } from "./utils";
 
 
+
+
 // Controller for retrieving dummy user information
-export const getDummyController = async (req: Request, res: Response) => {
+export const getDummyController = (DummyRepo)=>async (req: Request, res: Response) => {
   try {
     // Call the getDummyUsecase to handle retrieving dummy user information
     const selectedDummy = await getDummyUsecase(DummyRepo, Number(req.params.id));
