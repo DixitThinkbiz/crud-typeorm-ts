@@ -1,9 +1,6 @@
 // Import necessary modules and entities
 import { DummyRepositoryPort } from "../../../application/port/repositories/dummy_repo.port";
-// Import necessary modules and entities
-import { DummyRepositoryPort } from "../../../application/port/repositories/dummy_repo.port";
 import { Dummy } from "../../../domain/models/dummy";
-import { AppDataSource } from "../../orm/typeorm/config/ormconfig";
 import { t_dummy } from "../../orm/typeorm/entities/dummy";
 import { wrapTransaction } from "../../orm/typeorm/utils/transaction";
 

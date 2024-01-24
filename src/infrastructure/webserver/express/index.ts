@@ -5,7 +5,6 @@ import { AppDataSource } from "../../orm/typeorm/config/ormconfig";
 import { router } from "../../../interface/routes/dummy_routes";
 import "reflect-metadata"
 import swaggerUi from 'swagger-ui-express';
-import swaggerJSDoc from "swagger-jsdoc";
 const swaggerDocument = require('../../../../swagger/swagger.json');
 
 // Load environment variables from the .env file
@@ -29,9 +28,9 @@ app.use('/user', router);
 AppDataSource.initialize().then(() => {
   console.log("Database connection successful");
 
-  
+
   app.use('/user-api', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
-  
+
   app.listen(port, () => {
 
     console.log(`Server is running on http://localhost:${port}`);
