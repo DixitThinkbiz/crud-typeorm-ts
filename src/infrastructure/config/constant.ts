@@ -1,40 +1,33 @@
 export const constants = {
-    response: {
-      SUCCESS: {
-        status: 200,
-        message: "Request succeeded.",
-      },
-      USER_NOT_FOUND: {
-        status: 404,
-        message: "User not found.",
-      },
-      USER_ALREADY_EXISTS: {
-        status: 409,
-        message: "User already exists.",
-      },
-      USER_ADDED: {
-        status: 201,
-        message: "User added successfully.",
-      },
-      USER_UPDATED: {
-        status: 200,
-        message: "User updated successfully.", 
-      },
-      EMPTY_TABLE: {
-        "status": 204,
-        "message": "Table is empty."
-      },
-      INVALID_INPUT: {
-        status: 400,
-        message: "Invalid input provided.",
-      },
-      SERVER_ERROR: {
-        status: 500,
-        message: "Internal server error.",
-      },
-      
-      // Add more response codes as needed
-    },
-    // Add more constants as needed
-  };
+  SUCCESS_STATUS: {
+    OK: 200,
+    CREATED: 201,
+   
+    // Add more success status codes as needed
+  },
   
+  ERROR_STATUS: {
+    NOT_FOUND: 404,
+    CONFLICT: 409,
+    BAD_REQUEST: 400,
+    INTERNAL_SERVER_ERROR: 500,
+    // Add more error status codes as needed
+  },
+
+  ERROR_MESSAGE: {
+    USER_NOT_FOUND: "User not found.",
+    USER_ALREADY_EXISTS: "User already exists.",
+    INVALID_INPUT: "Invalid input provided.",
+    INTERNAL_SERVER_ERROR: "Internal server error.",
+    // Add more error messages as needed
+  },
+
+  SUCCESS_MESSAGE: {
+    REQUEST_SUCCEEDED: "Request succeeded.",
+    USER_ADDED: "User added successfully.",
+    USER_UPDATED: "User updated successfully.",
+    // Add more success messages as needed
+  },
+
+  // Add more constants as needed
+};

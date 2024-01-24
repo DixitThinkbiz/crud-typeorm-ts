@@ -6,15 +6,15 @@ import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateCol
 export class t_dummy {
     // Auto-incremented primary key column
     @PrimaryGeneratedColumn()
-    id!: number;
+    id: number;
     
     // Name column
     @Column()
-    name!: string;
+    name: string;
 
     // Email column
     @Column()
-    email!: string;
+    email: string;
 
     // Optional description column
     @Column({nullable: true})
@@ -22,14 +22,14 @@ export class t_dummy {
     
     // Column for creation timestamp
     @CreateDateColumn()
-    createdAt!: string;
+    createdAt: string;
 
     // Column for update timestamp
     @UpdateDateColumn()
-    updatedAt!: string;
+    updatedAt: string;
 
     // Column for delete timestamp (soft delete)
     @DeleteDateColumn()
-    deletedAt!: string;
+    deletedAt: string;
     
 }

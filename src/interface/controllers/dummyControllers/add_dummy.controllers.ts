@@ -4,7 +4,7 @@ import { addDummyUsecase } from "../../../application/use_cases/dummy/add_dummy.
 import { Dummy } from "../../../domain/models/dummy";
 import { DummyRepo } from "../../../infrastructure/repositories/dummy/dummy.repo";
 import { constants } from "../../../infrastructure/config/constant";
-import { json } from "stream/consumers";
+import { displayFunction } from "./utils";
 
 
 // Controller for adding a dummy user
@@ -13,16 +13,15 @@ export const addDummyController = async (req: Request, res: Response) => {
     // Call the addDummyUsecase to handle adding the dummy user
     const dummyData: Dummy=req.body;
     await addDummyUsecase(DummyRepo,dummyData);
-    res.status(constants.response.USER_ADDED.status).json(constants.response.USER_ADDED);
+    return displayFunction(constants.SUCCESS_STATUS.CREATED,res,constants.SUCCESS_MESSAGE.USER_ADDED);
   } catch (error) {
     // Handle errors, return appropriate status codes and messages
     if (error instanceof Error) {
-      if(error.message=="USER_ALREADY_EXISTS"){
-        return res.status(constants.response.USER_ALREADY_EXISTS.status).
-        json(constants.response.USER_ALREADY_EXISTS)
+      if(error.message===constants.ERROR_MESSAGE.USER_ALREADY_EXISTS){
+        return displayFunction(constants.ERROR_STATUS.CONFLICT,res,constants.ERROR_MESSAGE.USER_ALREADY_EXISTS);
       }
       
     }
-    res.status(constants.response.SERVER_ERROR.status).json(constants.response.SERVER_ERROR);
-  }
+    return displayFunction(constants.ERROR_STATUS.INTERNAL_SERVER_ERROR,res,constants.ERROR_MESSAGE.INTERNAL_SERVER_ERROR)
+    }
 };
