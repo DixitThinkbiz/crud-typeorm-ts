@@ -6,6 +6,7 @@ import { DummyRepo } from "../../../infrastructure/repositories/dummy/dummy.repo
 import { constants } from "../../../infrastructure/config/constant";
 import { displayFunction } from "./utils";
 import { AppDataSource } from "../../../infrastructure/orm/typeorm/config/ormconfig";
+import { EntityManager } from "typeorm";
 
 
 // Controller for adding a dummy user
@@ -13,9 +14,12 @@ export const addDummyController = (DummyRepo)=>async (req: Request, res: Respons
   try {
     // Call the addDummyUsecase to handle adding the dummy user
     const dummyData: Dummy=req.body;
-    await AppDataSource.transaction(async (entityManager) => {
-      await addDummyUsecase(DummyRepo, dummyData, entityManager);
-  });
+    await DummyRepo.wrapTransaction(async (t: EntityManager) => {
+      await addDummyUsecase(DummyRepo, dummyData, t);
+    })
+  //   await AppDataSource.transaction(async (entityManager) => {
+  //     await addDummyUsecase(DummyRepo, dummyData, entityManager);
+  // });
     return displayFunction(constants.SUCCESS_STATUS.CREATED,res,constants.SUCCESS_MESSAGE.USER_ADDED);
   } catch (error) {
     // Handle errors, return appropriate status codes and messages

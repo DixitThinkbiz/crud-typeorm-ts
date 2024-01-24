@@ -5,15 +5,23 @@ import { Dummy } from "../../../domain/models/dummy";
 import { DummyRepo } from "../../../infrastructure/repositories/dummy/dummy.repo";
 import { constants } from "../../../infrastructure/config/constant";
 import { displayFunction } from "./utils";
+import { AppDataSource } from "../../../infrastructure/orm/typeorm/config/ormconfig";
+import { EntityManager } from "typeorm";
 
 // Controller for updating dummy user data
 export const updateUserdata =(DummyRepo)=> async (req: Request, res: Response) => {
   try {
-    // Call the updateDummyUsecase to handle updating dummy user data
+    // Call the updateDummyUsecase to handle updating dummy user 
     const dummyData: Dummy=req.body;
-    await updateDummyUsecase(DummyRepo,dummyData);
-    // Respond with a success message
-    return displayFunction(constants.SUCCESS_STATUS.OK,res,constants.SUCCESS_MESSAGE.USER_UPDATED);
+    await DummyRepo.wrapTransaction(async (t: EntityManager) => {
+      await  updateDummyUsecase(DummyRepo,dummyData,t);
+    })
+  //   await AppDataSource.transaction(async (entityManager) => {
+  //   await updateDummyUsecase(DummyRepo,dummyData,entityManager);
+  //   // Respond with a success message
+  // });
+  return displayFunction(constants.SUCCESS_STATUS.OK,res,constants.SUCCESS_MESSAGE.USER_UPDATED);
+    
   } catch (error) {
     // Handle errors, return appropriate status codes and messages
     if (error instanceof Error) {
