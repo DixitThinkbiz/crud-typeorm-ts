@@ -1,17 +1,22 @@
 // Import necessary modules and entities
 import { DummyRepositoryPort } from "../../../application/port/repositories/dummy_repo.port";
+// Import necessary modules and entities
+import { DummyRepositoryPort } from "../../../application/port/repositories/dummy_repo.port";
 import { Dummy } from "../../../domain/models/dummy";
 import { AppDataSource } from "../../orm/typeorm/config/ormconfig";
 import { t_dummy } from "../../orm/typeorm/entities/dummy";
+import { wrapTransaction } from "../../orm/typeorm/utils/transaction";
 
+// Implementation of DummyRepositoryPort using TypeORM
 // Implementation of DummyRepositoryPort using TypeORM
 export const DummyRepo: DummyRepositoryPort = {
     // Retrieve dummy data by ID
-    getDummy: async (id) => {
-        const selectedDummy: Dummy[] = await AppDataSource
+    getDummy: async (id, entityManager) => {
+        const selectedDummy: Dummy[] = await entityManager
             .getRepository(t_dummy)
             .createQueryBuilder()
             .select("id, name, email, description")
+            .where(id ? "id = :id" : "true", { id: id })
             .where(id ? "id = :id" : "true", { id: id })
             .getRawMany();
         // Return the selected dummy data
@@ -19,8 +24,8 @@ export const DummyRepo: DummyRepositoryPort = {
     },
 
     // Delete dummy data by ID
-    deleteDummy: async (id) => {
-        await AppDataSource
+    deleteDummy: async (id, entityManager) => {
+        await entityManager
             .getRepository(t_dummy)
             .createQueryBuilder()
             .softDelete()
@@ -29,8 +34,8 @@ export const DummyRepo: DummyRepositoryPort = {
     },
 
     // Update dummy data
-    updateDummy: async (dummyData) => {
-        await AppDataSource
+    updateDummy: async (dummyData, entityManager) => {
+        await entityManager
             .createQueryBuilder()
             .update(t_dummy)
             .set(dummyData)
@@ -39,16 +44,16 @@ export const DummyRepo: DummyRepositoryPort = {
     },
 
     // Add new dummy data
-    addDummy: async (dummyData) => {
-        await AppDataSource
+    addDummy: async (dummyData, entityManager) => {
+        await entityManager
             .getRepository(t_dummy)
             .save(dummyData);
     },
 
     // Check if a dummy with the specified email exists
-    checkDummyEmailExist: async (email) => {
+    checkDummyEmailExist: async (email, entityManager) => {
         // Query the t_dummy table to find a user with the given email
-        const selectedDummy = await AppDataSource
+        const selectedDummy = await entityManager
             .getRepository(t_dummy)
             .createQueryBuilder()
             .select("id")
@@ -57,5 +62,7 @@ export const DummyRepo: DummyRepositoryPort = {
 
         // Return the selected user data
         return selectedDummy as Dummy;
-    }
+    },
+    wrapTransaction
+    
 };
