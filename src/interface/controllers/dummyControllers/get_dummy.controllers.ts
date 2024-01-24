@@ -3,29 +3,17 @@ import { Request, Response } from "express";
 import { getDummyUsecase } from "../../../application/use_cases/dummy/get_dummy.usecase";
 import { constants } from "../../../infrastructure/config/constant";
 import { displayFunction } from "./utils";
-
 import { EntityManager } from "typeorm";
-import { deleteDummyUsecase } from "../../../application/use_cases/dummy/delete_dummy.usecase";
 import { DummyRepositoryPort } from "../../../application/port/repositories/dummy_repo.port";
-
-
-
-
 
 // Controller for retrieving dummy user information
 export const getDummyController = (DummyRepo: DummyRepositoryPort) => async (req: Request, res: Response) => {
   try {
     //Call the getDummyUsecase to handle retrieving dummy user information
-    const selectedDummy=await DummyRepo.wrapTransaction(async (t: EntityManager) => {
+    const selectedDummy = await DummyRepo.wrapTransaction(async (t: EntityManager) => {
       return await getDummyUsecase(DummyRepo, Number(req.params.id), t);
     })
-    return displayFunction(constants.SUCCESS_STATUS.OK, res,selectedDummy);
-    // await AppDataSource.transaction(async (entityManager) => {
-    //   const selectedDummy = await getDummyUsecase(DummyRepo, Number(req.params.id), entityManager);
-    //   return displayFunction(constants.SUCCESS_STATUS.OK, res, selectedDummy);
-    // });
-
-
+    return displayFunction(constants.SUCCESS_STATUS.OK, res, selectedDummy);
   } catch (error) {
     // Handle errors, return appropriate status codes and messages
     if (error instanceof Error) {

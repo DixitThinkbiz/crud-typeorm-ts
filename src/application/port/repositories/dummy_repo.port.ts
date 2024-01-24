@@ -2,7 +2,6 @@
 
 import { EntityManager } from "typeorm";
 import { Dummy } from "../../../domain/models/dummy";
-import { AppDataSource } from "../../../infrastructure/orm/typeorm/config/ormconfig";
 // Port defining the contract for interacting with dummy data in the repository
 
 
