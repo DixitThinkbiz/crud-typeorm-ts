@@ -1,7 +1,7 @@
 // Import necessary domain model
 
 import { EntityManager } from "typeorm";
-import { Dummy } from "../../../domain/models/dummy";
+import { Dummy, AuthLogin } from "../../../domain/models/dummy";
 // Port defining the contract for interacting with dummy data in the repository
 
 
@@ -20,7 +20,7 @@ export type DummyRepositoryPort = {
   addDummy(dummyData: Dummy,entityManager:EntityManager): Promise<void>;
 
   // Check if a dummy with the specified email exists
-  checkDummyEmailExist(email: string,entityManager:EntityManager): Promise<Dummy>;
+  checkDummyEmailExist(email: string,entityManager:EntityManager): Promise<AuthLogin>;
 
   wrapTransaction:<T>(fun:(t:EntityManager)=>Promise<T>)=>Promise<T>
 }

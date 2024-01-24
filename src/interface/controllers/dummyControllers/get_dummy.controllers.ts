@@ -11,7 +11,7 @@ export const getDummyController = (DummyRepo: DummyRepositoryPort) => async (req
   try {
     //Call the getDummyUsecase to handle retrieving dummy user information
     const selectedDummy = await DummyRepo.wrapTransaction(async (t: EntityManager) => {
-      return await getDummyUsecase(DummyRepo, Number(req.params.id), t);
+      return await getDummyUsecase(DummyRepo, Number(req.body.id), t);
     })
     return displayFunction(constants.SUCCESS_STATUS.OK, res, selectedDummy);
   } catch (error) {

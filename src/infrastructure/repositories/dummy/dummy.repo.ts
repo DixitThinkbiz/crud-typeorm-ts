@@ -1,6 +1,6 @@
 // Import necessary modules and entities
 import { DummyRepositoryPort } from "../../../application/port/repositories/dummy_repo.port";
-import { Dummy } from "../../../domain/models/dummy";
+import { Dummy, AuthLogin } from "../../../domain/models/dummy";
 import { t_dummy } from "../../orm/typeorm/entities/dummy";
 import { wrapTransaction } from "../../orm/typeorm/utils/transaction";
 
@@ -53,12 +53,12 @@ export const DummyRepo: DummyRepositoryPort = {
         const selectedDummy = await entityManager
             .getRepository(t_dummy)
             .createQueryBuilder()
-            .select("id")
+            .select("id,email,password")
             .where("email = :email", { email: email })
             .getRawOne();
 
         // Return the selected user data
-        return selectedDummy as Dummy;
+        return selectedDummy as AuthLogin;
     },
     wrapTransaction
     

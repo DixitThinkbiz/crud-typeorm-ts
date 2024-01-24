@@ -16,6 +16,9 @@ export class t_dummy {
     @Column()
     email: string;
 
+    @Column()
+    password: string;
+
     // Optional description column
     @Column({nullable: true})
     description?: string;

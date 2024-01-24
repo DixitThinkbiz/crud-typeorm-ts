@@ -1,6 +1,6 @@
 // Import necessary functions
 import { EntityManager } from "typeorm";
-import { Dummy } from "../../../domain/models/dummy";
+import { Dummy, AuthLogin } from "../../../domain/models/dummy";
 import { constants } from "../../../infrastructure/config/constant";
 import { DummyRepositoryPort } from "../../port/repositories/dummy_repo.port";
 
@@ -12,7 +12,7 @@ export const updateDummyUsecase = async (DummyRepo:DummyRepositoryPort,dummyData
     // If the dummy data exists
     if (checkDummyExist.length) {
         // Check if another dummy with the same email already exists
-        const selectedDummy: Dummy = await DummyRepo.checkDummyEmailExist(dummyData.email,t);
+        const selectedDummy: AuthLogin = await DummyRepo.checkDummyEmailExist(dummyData.email,t);
        
         // If another dummy with the same email exists, throw an error
         if (selectedDummy) {

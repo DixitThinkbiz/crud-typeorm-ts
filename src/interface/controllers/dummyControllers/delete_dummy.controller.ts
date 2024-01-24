@@ -11,7 +11,7 @@ export const deleteDummyController = (DummyRepo: DummyRepositoryPort) => async (
   try {
     // Call the deleteDummyUsecase to handle the deletion of the dummy user
     await DummyRepo.wrapTransaction(async (t: EntityManager) => {
-      return await deleteDummyUsecase(DummyRepo, Number(req.params.id), t)
+      return await deleteDummyUsecase(DummyRepo, Number(req.body.id), t)
     })
     return displayFunction(constants.SUCCESS_STATUS.OK, res, constants.SUCCESS_MESSAGE.REQUEST_SUCCEEDED)
   } catch (error) {
