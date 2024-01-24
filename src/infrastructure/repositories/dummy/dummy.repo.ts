@@ -1,10 +1,13 @@
 // Import necessary modules and entities
 import { DummyRepositoryPort } from "../../../application/port/repositories/dummy_repo.port";
+// Import necessary modules and entities
+import { DummyRepositoryPort } from "../../../application/port/repositories/dummy_repo.port";
 import { Dummy } from "../../../domain/models/dummy";
 import { AppDataSource } from "../../orm/typeorm/config/ormconfig";
 import { t_dummy } from "../../orm/typeorm/entities/dummy";
 import { wrapTransaction } from "../../orm/typeorm/utils/transaction";
 
+// Implementation of DummyRepositoryPort using TypeORM
 // Implementation of DummyRepositoryPort using TypeORM
 export const DummyRepo: DummyRepositoryPort = {
     // Retrieve dummy data by ID
@@ -13,6 +16,7 @@ export const DummyRepo: DummyRepositoryPort = {
             .getRepository(t_dummy)
             .createQueryBuilder()
             .select("id, name, email, description")
+            .where(id ? "id = :id" : "true", { id: id })
             .where(id ? "id = :id" : "true", { id: id })
             .getRawMany();
         // Return the selected dummy data

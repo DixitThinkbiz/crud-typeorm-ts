@@ -12,6 +12,7 @@ export const validateDummyData = (schema:ObjectSchema
   // If validation fails, return a 400 Bad Request response with the validation error details
   if (error) {
     return res.status(constants.ERROR_STATUS.BAD_REQUEST).json({ error: error.details[0].message });
+    return res.status(constants.ERROR_STATUS.BAD_REQUEST).json({ error: error.details[0].message });
   }
   // Move to the next middleware or route handler
   next();

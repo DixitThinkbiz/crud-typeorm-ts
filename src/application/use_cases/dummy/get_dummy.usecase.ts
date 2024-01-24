@@ -3,6 +3,8 @@ import { EntityManager } from "typeorm";
 import { Dummy } from "../../../domain/models/dummy";
 import { constants } from "../../../infrastructure/config/constant";
 import {  DummyRepositoryPort } from "../../port/repositories/dummy_repo.port";
+import { constants } from "../../../infrastructure/config/constant";
+import {  DummyRepositoryPort } from "../../port/repositories/dummy_repo.port";
 
 
 // Get Dummy Usecase
@@ -16,6 +18,7 @@ export const getDummyUsecase = async (DummyRepo :DummyRepositoryPort,id: number,
             await DummyRepo.checkDummyEmailExist(selectedDummy[0].email,t)
             return selectedDummy;
         } else {
+            throw new Error(constants.ERROR_MESSAGE.USER_NOT_FOUND);
             throw new Error(constants.ERROR_MESSAGE.USER_NOT_FOUND);
         }
     } 
