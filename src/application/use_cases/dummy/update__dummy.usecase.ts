@@ -5,9 +5,9 @@ import { constants } from "../../../infrastructure/config/constant";
 import { DummyRepositoryPort } from "../../port/repositories/dummy_repo.port";
 
 // Update Dummy Usecase
-export const updateDummyUsecase = async (DummyRepo:DummyRepositoryPort,dummyData: Dummy,t:EntityManager) => {
+export const updateDummyUsecase = async (DummyRepo:DummyRepositoryPort,id :number,dummyData: Dummy,t:EntityManager) => {
     // Check if the dummy data with the specified ID exists
-    const checkDummyExist = await  DummyRepo.getDummy(dummyData.id,t);
+    const checkDummyExist = await  DummyRepo.getDummy(id,t);
    
     // If the dummy data exists
     if (checkDummyExist.length) {
@@ -19,7 +19,7 @@ export const updateDummyUsecase = async (DummyRepo:DummyRepositoryPort,dummyData
             throw new Error(constants.ERROR_MESSAGE.USER_ALREADY_EXISTS);
         }
         // Update the dummy data
-        await DummyRepo.updateDummy(dummyData,t);
+        await DummyRepo.updateDummy(id,dummyData,t);
     } else {
         // If the dummy data does not exist, throw an error
         throw new Error(constants.ERROR_MESSAGE.USER_NOT_FOUND);

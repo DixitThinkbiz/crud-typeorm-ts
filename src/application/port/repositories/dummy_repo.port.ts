@@ -14,7 +14,7 @@ export type DummyRepositoryPort = {
   deleteDummy(id: number,entityManager:EntityManager): Promise<void>;
 
   // Update dummy data
-  updateDummy(dummyData: Dummy,entityManager:EntityManager): Promise<void>;
+  updateDummy(id:number,dummyData: Dummy,entityManager:EntityManager): Promise<void>;
 
   // Add new dummy data
   addDummy(dummyData: Dummy,entityManager:EntityManager): Promise<void>;

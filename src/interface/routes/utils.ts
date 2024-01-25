@@ -3,6 +3,8 @@ import { NextFunction, Request, Response } from "express";
 import { ObjectSchema } from "joi";
 import { constants } from "../../infrastructure/config/constant";
 import jwt, { JwtPayload } from 'jsonwebtoken';
+import { CustomRequest } from "../../domain/models/dummy";
+import { log } from "console";
 
 
 
@@ -16,12 +18,15 @@ export const validateDummyData = (schema: ObjectSchema
   // Move to the next middleware or route handler
   next();
 }
-export const isAuthenticated = (req: Request, res: Response, next: NextFunction) => {
+export const isAuthenticated = (req: CustomRequest , res: Response, next: NextFunction) => {
   try {
     const token = req.headers.authorization;
 
     const data = jwt.verify(token, "dixit") as JwtPayload
-    req.body.id = data.id
+    if (!req.locals) {
+      req.locals = {};
+    }
+    req.locals.id=Number(data.id);
     next();
   }
   catch (error) {

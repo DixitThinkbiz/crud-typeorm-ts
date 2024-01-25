@@ -31,12 +31,12 @@ export const DummyRepo: DummyRepositoryPort = {
     },
 
     // Update dummy data
-    updateDummy: async (dummyData, entityManager) => {
+    updateDummy: async (id,dummyData, entityManager) => {
         await entityManager
             .createQueryBuilder()
             .update(t_dummy)
             .set(dummyData)
-            .where("id = :id", { id: dummyData.id })
+            .where("id = :id", { id: id})
             .execute();
     },
 
