@@ -2,8 +2,6 @@ export const constants = {
   SUCCESS_STATUS: {
     OK: 200,
     CREATED: 201,
-   
-    // Add more success status codes as needed
   },
   
   ERROR_STATUS: {
@@ -12,7 +10,9 @@ export const constants = {
     BAD_REQUEST: 400,
     INTERNAL_SERVER_ERROR: 500,
     AUTHENTICATION_FAILED: 401,
-    // Add more error status codes as needed
+    ACCESS_TOKEN_MISSING: 402,
+    JWT_ERROR: 403,
+    JWT_TOKEN_EXPIRED_ERROR: 406
   },
 
   ERROR_MESSAGE: {
@@ -21,7 +21,10 @@ export const constants = {
     INVALID_INPUT: "Invalid input provided.",
     INTERNAL_SERVER_ERROR: "Internal server error.",
     AUTHENTICATION_FAILED: "Authentication failed. Invalid credentials.",
-    ACCESS_TOKEN_MISSING: "Access token is missing."
+    ACCESS_TOKEN_MISSING: "Access token is missing.",
+    JWT_NOT_BEFORE_ERROR: "JWT not yet valid.",
+    JWT_ERROR: "JWT error occurred.",
+    JWT_TOKEN_EXPIRED_ERROR: "JWT token expired."
     // Add more error messages as needed
   },
 

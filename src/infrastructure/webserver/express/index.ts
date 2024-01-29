@@ -6,7 +6,7 @@ import { userRouter } from "../../../interface/routes/dummy_routes";
 import "reflect-metadata"
 import swaggerUi from 'swagger-ui-express';
 import { authRouter } from "../../../interface/routes/auth_routes";
-const swaggerDocument = require('../../../../swagger/swagger.json');
+import swaggerDocument from '../../../../swagger/swagger.json';
 
 // Load environment variables from the .env file
 dotenv.config();

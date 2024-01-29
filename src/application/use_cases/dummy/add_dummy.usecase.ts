@@ -15,3 +15,4 @@ export const addDummyUsecase = async (DummyRepo:DummyRepositoryPort,dummyData: D
     // Add the dummy data
     await DummyRepo.addDummy(dummyData,t);
 }
+
