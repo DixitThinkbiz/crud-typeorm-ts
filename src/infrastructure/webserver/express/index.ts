@@ -30,7 +30,9 @@ AppDataSource.initialize().then(() => {
   console.log("Database connection successful");
 
 
+
   app.use('/user-api', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+
 
   app.listen(port, () => {
 
