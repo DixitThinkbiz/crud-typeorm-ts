@@ -1,14 +1,13 @@
 export const constants = {
-
-  TIME:{
-    A_TIME:3600,
-    R_TIME:36000
+  TIME: {
+    A_TIME: 3600,
+    R_TIME: 36000,
   },
   SUCCESS_STATUS: {
     OK: 200,
     CREATED: 201,
   },
-  
+
   ERROR_STATUS: {
     NOT_FOUND: 404,
     CONFLICT: 409,
@@ -17,7 +16,7 @@ export const constants = {
     AUTHENTICATION_FAILED: 401,
     ACCESS_TOKEN_MISSING: 402,
     JWT_ERROR: 403,
-    JWT_TOKEN_EXPIRED_ERROR: 406
+    JWT_TOKEN_EXPIRED_ERROR: 406,
   },
 
   ERROR_MESSAGE: {
@@ -29,14 +28,13 @@ export const constants = {
     ACCESS_TOKEN_MISSING: "Access token is missing.",
     JWT_NOT_BEFORE_ERROR: "JWT not yet valid.",
     JWT_ERROR: "JWT error occurred.",
-    JWT_TOKEN_EXPIRED_ERROR: "JWT token expired."
+    JWT_TOKEN_EXPIRED_ERROR: "JWT token expired.",
   },
 
   SUCCESS_MESSAGE: {
     REQUEST_SUCCEEDED: "Request succeeded.",
     USER_ADDED: "User added successfully.",
     USER_UPDATED: "User updated successfully.",
-    AUTHENTICATION_SUCCESSFUL: "Authentication successful."
+    AUTHENTICATION_SUCCESSFUL: "Authentication successful.",
   },
-
 };

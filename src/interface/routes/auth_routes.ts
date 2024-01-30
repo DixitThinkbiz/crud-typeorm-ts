@@ -8,9 +8,16 @@ import { isAuthenticated } from "../../infrastructure/helpers/middlewares/Authen
 import { refreshTokenController } from "../controllers/authControllers.ts/refresh_tokens.controller";
 import { Env } from "../../infrastructure/helpers/env";
 
-
 // Create an Express router
 export const authRouter = express.Router();
 
-authRouter.post("/login",  validateDummyData(loginSchema),loginController((DummyRepo)));
-authRouter.post("/refreshtokens",isAuthenticated(Env.REFRESH_KEY),refreshTokenController(DummyRepo))
+authRouter.post(
+  "/login",
+  validateDummyData(loginSchema),
+  loginController(DummyRepo)
+);
+authRouter.post(
+  "/refreshtokens",
+  isAuthenticated(Env.REFRESH_KEY),
+  refreshTokenController(DummyRepo)
+);

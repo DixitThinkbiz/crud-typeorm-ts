@@ -4,9 +4,7 @@ import { DummyRepositoryPort } from "../../src/application/port/repositories/dum
 import { getDummyUsecase } from "../../src/application/use_cases/dummy/get_dummy.usecase";
 import { constants } from "../../src/infrastructure/config/constant";
 import { Dummy } from "../../src/domain/models/dummy";
-import { deleteDummyUsecase } from "../../src/application/use_cases/dummy/delete_dummy.usecase";
-import { addDummyUsecase } from "../../src/application/use_cases/dummy/add_dummy.usecase";
-import { updateDummyUsecase } from "../../src/application/use_cases/dummy/update__dummy.usecase";
+
 
 // Mock DummyRepositoryPort
 const mockDummyRepo: DummyRepositoryPort = {

@@ -1,5 +1,4 @@
-export type TokenPayload={
-    id: number;
-    role: string;
- }
- 
+export type TokenPayload = {
+  id: number;
+  role: string;
+};

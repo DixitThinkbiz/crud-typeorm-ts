@@ -5,7 +5,7 @@ import { constants } from "../../../infrastructure/config/constant";
 import { DummyRepositoryPort } from "../../port/repositories/dummy_repo.port";
 import { Env } from "../../../infrastructure/helpers/env";
 import jwt from "jsonwebtoken";
-import { access } from "fs";
+
 
 // Get Dummy Usecase
 export const loginUsecase = async (
@@ -20,11 +20,15 @@ export const loginUsecase = async (
   if (!selectedDummy || selectedDummy.password != dummy.password) {
     throw new Error(constants.ERROR_MESSAGE.AUTHENTICATION_FAILED);
   }
-  const accessToken = jwt.sign({ id: selectedDummy.id,role:selectedDummy.role }, Env.ACCESS_KEY, {
-    expiresIn: constants.TIME.A_TIME,
-  });
+  const accessToken = jwt.sign(
+    { id: selectedDummy.id, role: selectedDummy.role },
+    Env.ACCESS_KEY,
+    {
+      expiresIn: constants.TIME.A_TIME,
+    }
+  );
   const refreshToken = jwt.sign(
-    { id: selectedDummy.id ,role:selectedDummy.role},
+    { id: selectedDummy.id, role: selectedDummy.role },
     Env.REFRESH_KEY,
     {
       expiresIn: constants.TIME.R_TIME,

@@ -1,45 +1,51 @@
 // Import necessary decorators from TypeORM
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from "typeorm";
-export type UserRoleType = "admin"| "user";
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  DeleteDateColumn,
+} from "typeorm";
+export type UserRoleType = "admin" | "user";
 // Database entity for the t_dummy table
 @Entity()
 export class t_dummy {
-    // Auto-incremented primary key column
-    @PrimaryGeneratedColumn()
-    id: number;
-    
-    // Name column
-    @Column()
-    name: string;
+  // Auto-incremented primary key column
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    // Email column
-    @Column()
-    email: string;
+  // Name column
+  @Column()
+  name: string;
 
-    @Column()
-    password: string;
+  // Email column
+  @Column()
+  email: string;
 
-    @Column({
-        type: "enum",
-        enum: ["admin", "user"],
-        default:  "user"
-    })
-    role: UserRoleType
+  @Column()
+  password: string;
 
-    // Optional description column
-    @Column({nullable: true})
-    description?: string;
-    
-    // Column for creation timestamp
-    @CreateDateColumn()
-    createdAt: string;
+  @Column({
+    type: "enum",
+    enum: ["admin", "user"],
+    default: "user",
+  })
+  role: UserRoleType;
 
-    // Column for update timestamp
-    @UpdateDateColumn()
-    updatedAt: string;
+  // Optional description column
+  @Column({ nullable: true })
+  description?: string;
 
-    // Column for delete timestamp (soft delete)
-    @DeleteDateColumn()
-    deletedAt: string;
-    
+  // Column for creation timestamp
+  @CreateDateColumn()
+  createdAt: string;
+
+  // Column for update timestamp
+  @UpdateDateColumn()
+  updatedAt: string;
+
+  // Column for delete timestamp (soft delete)
+  @DeleteDateColumn()
+  deletedAt: string;
 }

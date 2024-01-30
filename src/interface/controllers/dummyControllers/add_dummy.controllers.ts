@@ -7,24 +7,35 @@ import { EntityManager } from "typeorm";
 import { DummyRepositoryPort } from "../../../application/port/repositories/dummy_repo.port";
 import { displayFunction } from "../../../infrastructure/helpers/res_display";
 
-
 // Controller for adding a dummy user
-export const addDummyController = (DummyRepo: DummyRepositoryPort) => async (req: Request, res: Response) => {
-  try {
-    // Call the addDummyUsecase to handle adding the dummy user
-    const dummyData: Dummy = req.body;
-    await DummyRepo.wrapTransaction(async (t: EntityManager) => {
-      await addDummyUsecase(DummyRepo, dummyData, t);
-    })
-    return displayFunction(constants.SUCCESS_STATUS.CREATED, res, constants.SUCCESS_MESSAGE.USER_ADDED);
-  } catch (error) {
-    // Handle errors, return appropriate status codes and messages
-    if (error instanceof Error) {
-      if (error.message === constants.ERROR_MESSAGE.USER_ALREADY_EXISTS) {
-        return displayFunction(constants.ERROR_STATUS.CONFLICT, res, constants.ERROR_MESSAGE.USER_ALREADY_EXISTS);
+export const addDummyController =
+  (DummyRepo: DummyRepositoryPort) => async (req: Request, res: Response) => {
+    try {
+      // Call the addDummyUsecase to handle adding the dummy user
+      const dummyData: Dummy = req.body;
+      await DummyRepo.wrapTransaction(async (t: EntityManager) => {
+        await addDummyUsecase(DummyRepo, dummyData, t);
+      });
+      return displayFunction(
+        constants.SUCCESS_STATUS.CREATED,
+        res,
+        constants.SUCCESS_MESSAGE.USER_ADDED
+      );
+    } catch (error) {
+      // Handle errors, return appropriate status codes and messages
+      if (error instanceof Error) {
+        if (error.message === constants.ERROR_MESSAGE.USER_ALREADY_EXISTS) {
+          return displayFunction(
+            constants.ERROR_STATUS.CONFLICT,
+            res,
+            constants.ERROR_MESSAGE.USER_ALREADY_EXISTS
+          );
+        }
       }
-
+      return displayFunction(
+        constants.ERROR_STATUS.INTERNAL_SERVER_ERROR,
+        res,
+        constants.ERROR_MESSAGE.INTERNAL_SERVER_ERROR
+      );
     }
-    return displayFunction(constants.ERROR_STATUS.INTERNAL_SERVER_ERROR, res, constants.ERROR_MESSAGE.INTERNAL_SERVER_ERROR)
-  }
-};
+  };
