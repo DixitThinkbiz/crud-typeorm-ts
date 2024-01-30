@@ -12,9 +12,6 @@
   ],
 
   "paths": {
-    "tags":{
-      "name":"User"
-    },
     "/user": {
       "get": {
         "tags":[
@@ -27,7 +24,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/patchUser"
+                  "$ref": "#/components/schemas/getUser"
                 },
                 "example":[ {
                   "id": 1,
@@ -53,7 +50,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/user"
+                "$ref": "#/components/schemas/postUser"
               }
             }
           }
@@ -129,7 +126,7 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "number"
             }
           }
         ],
@@ -139,7 +136,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/patchUser"
+                  "$ref": "#/components/schemas/getUser"
                 },
                 "example": {
                   "id": 1,
@@ -166,8 +163,7 @@
             "name": "id",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int64"
+              "type": "number"
             }
           }
         ],
@@ -184,7 +180,7 @@
   },
   "components": {
     "schemas": {
-      "user": {
+      "postUser": {
         "type": "object",
         "properties": {
           "name": {
@@ -200,6 +196,26 @@
         "required": [
           "name",
           "email"
+        ]
+      },
+      "getUser": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id","email","name"
         ]
       },
       "patchUser": {

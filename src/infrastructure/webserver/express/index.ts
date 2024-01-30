@@ -2,10 +2,11 @@
 import express from "express";
 import dotenv from 'dotenv';
 import { AppDataSource } from "../../orm/typeorm/config/ormconfig";
-import { router } from "../../../interface/routes/dummy_routes";
+import { userRouter } from "../../../interface/routes/dummy_routes";
 import "reflect-metadata"
 import swaggerUi from 'swagger-ui-express';
-const swaggerDocument = require('../../../../swagger/swagger.json');
+import { authRouter } from "../../../interface/routes/auth_routes";
+import swaggerDocument from '../../../../swagger/swagger.json';
 
 // Load environment variables from the .env file
 dotenv.config();
@@ -20,16 +21,18 @@ const port = process.env.PORT;
 app.get("/", (req, res) => {
   res.send("Working");
 });
-
 // Use the defined routes from dummy_routes
-app.use('/user', router);
+app.use('/auth',authRouter)
+app.use('/user', userRouter);
 
 // Initialize the AppDataSource and start the server
 AppDataSource.initialize().then(() => {
   console.log("Database connection successful");
 
 
+
   app.use('/user-api', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+
 
   app.listen(port, () => {
 

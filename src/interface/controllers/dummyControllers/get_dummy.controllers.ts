@@ -5,14 +5,18 @@ import { constants } from "../../../infrastructure/config/constant";
 import { displayFunction } from "./utils";
 import { EntityManager } from "typeorm";
 import { DummyRepositoryPort } from "../../../application/port/repositories/dummy_repo.port";
+import { CustomRequest } from "../../../domain/models/dummy";
+
 
 // Controller for retrieving dummy user information
-export const getDummyController = (DummyRepo: DummyRepositoryPort) => async (req: Request, res: Response) => {
+export const getDummyController = (DummyRepo: DummyRepositoryPort) => async (req: CustomRequest, res: Response) => {
   try {
     //Call the getDummyUsecase to handle retrieving dummy user information
+    const id=req.locals?.id;
     const selectedDummy = await DummyRepo.wrapTransaction(async (t: EntityManager) => {
-      return await getDummyUsecase(DummyRepo, Number(req.params.id), t);
+      return await getDummyUsecase(DummyRepo,id, t);
     })
+
     return displayFunction(constants.SUCCESS_STATUS.OK, res, selectedDummy);
   } catch (error) {
     // Handle errors, return appropriate status codes and messages

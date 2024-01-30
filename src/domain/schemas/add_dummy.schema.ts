@@ -7,6 +7,8 @@ export const dummySchemaPost = Joi.object({
   name: Joi.string().min(2).required(),
   // Validate email: must be a valid email format and is required
   email: Joi.string().email().required(),
+  //Validate password: must be a valid password format and is required
+  password:Joi.string().min(8).required(),
   // Validate description: must be a string with a minimum length of 1 character
   description: Joi.string().min(1)
 });
