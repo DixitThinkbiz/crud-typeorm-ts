@@ -9,20 +9,36 @@ import { dummySchemaPost } from "../../domain/schemas/add_dummy.schema";
 import { DummyRepo } from "../../infrastructure/repositories/dummy/dummy.repo";
 import { isAuthenticated } from "../../infrastructure/helpers/middlewares/Authenticate";
 import { validateDummyData } from "../../infrastructure/helpers/middlewares/valiidate";
-
+import { Env } from "../../infrastructure/helpers/env";
 
 // Create an Express router
 export const userRouter = express.Router();
 
 // Define routes for retrieving dummy data
-userRouter.get("/", getDummyController(DummyRepo));
-userRouter.get("/data", isAuthenticated,getDummyController(DummyRepo));
+userRouter.get(
+  "/",
+  isAuthenticated(Env.ACCESS_KEY),
+  getDummyController(DummyRepo)
+);
 
 // Define route for adding dummy data with validation
-userRouter.post("/", validateDummyData(dummySchemaPost), addDummyController(DummyRepo));
+userRouter.post(
+  "/",
+  validateDummyData(dummySchemaPost),
+  addDummyController(DummyRepo)
+);
 
 // Define route for updating dummy data with validation
-userRouter.patch("/", validateDummyData(dummySchemaPatch),isAuthenticated, updateUserdata(DummyRepo));
+userRouter.patch(
+  "/",
+  validateDummyData(dummySchemaPatch),
+  isAuthenticated,
+  updateUserdata(DummyRepo)
+);
 
 // Define route for deleting dummy data
-userRouter.delete("/",isAuthenticated,deleteDummyController(DummyRepo));
+userRouter.delete(
+  "/",
+  isAuthenticated(Env.ACCESS_KEY),
+  deleteDummyController(DummyRepo)
+);

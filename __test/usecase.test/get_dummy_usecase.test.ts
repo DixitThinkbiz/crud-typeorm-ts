@@ -4,9 +4,7 @@ import { DummyRepositoryPort } from "../../src/application/port/repositories/dum
 import { getDummyUsecase } from "../../src/application/use_cases/dummy/get_dummy.usecase";
 import { constants } from "../../src/infrastructure/config/constant";
 import { Dummy } from "../../src/domain/models/dummy";
-import { deleteDummyUsecase } from "../../src/application/use_cases/dummy/delete_dummy.usecase";
-import { addDummyUsecase } from "../../src/application/use_cases/dummy/add_dummy.usecase";
-import { updateDummyUsecase } from "../../src/application/use_cases/dummy/update__dummy.usecase";
+
 
 // Mock DummyRepositoryPort
 const mockDummyRepo: DummyRepositoryPort = {
@@ -37,7 +35,7 @@ describe("getDummyUsecase", () => {
     (mockDummyRepo.getDummy as jest.Mock).mockResolvedValueOnce(mockDummyData);
 
     // Call the usecase function
-    const result = await getDummyUsecase(mockDummyRepo, 1, mockEntityManager);
+    const result = await getDummyUsecase(mockDummyRepo, {id:1}, mockEntityManager);
 
     // Expect the result to be the same as the mocked dummy data
     expect(result).toEqual(mockDummyData[0]);
@@ -50,7 +48,7 @@ describe("getDummyUsecase", () => {
 
     // Call the usecase function
     await expect(
-      getDummyUsecase(mockDummyRepo, 1, mockEntityManager)
+      getDummyUsecase(mockDummyRepo, {id:1}, mockEntityManager)
     ).rejects.toThrow(constants.ERROR_MESSAGE.USER_NOT_FOUND);
   });
 
