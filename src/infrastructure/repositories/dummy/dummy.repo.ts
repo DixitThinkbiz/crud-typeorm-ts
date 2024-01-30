@@ -14,7 +14,6 @@ export const DummyRepo: DummyRepositoryPort = {
             .createQueryBuilder()
             .select("id, name, email, description")
             .where(id ? "id = :id" : "true", { id: id })
-            .where(id ? "id = :id" : "true", { id: id })
             .getRawMany();
         // Return the selected dummy data
         return selectedDummy as Dummy[];
@@ -53,8 +52,8 @@ export const DummyRepo: DummyRepositoryPort = {
         const selectedDummy = await entityManager
             .getRepository(t_dummy)
             .createQueryBuilder()
-            .select("id,email,password")
-            .where("email = :email", { email: email })
+            .select("id,email,password,role")
+            .where({ email: email })
             .getRawOne();
 
         // Return the selected user data

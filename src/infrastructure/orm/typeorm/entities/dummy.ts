@@ -1,6 +1,6 @@
 // Import necessary decorators from TypeORM
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from "typeorm";
-
+export type UserRoleType = "admin"| "user";
 // Database entity for the t_dummy table
 @Entity()
 export class t_dummy {
@@ -18,6 +18,13 @@ export class t_dummy {
 
     @Column()
     password: string;
+
+    @Column({
+        type: "enum",
+        enum: ["admin", "user"],
+        default:  "user"
+    })
+    role: UserRoleType
 
     // Optional description column
     @Column({nullable: true})

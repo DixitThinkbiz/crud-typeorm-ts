@@ -6,12 +6,12 @@ import {  DummyRepositoryPort } from "../../port/repositories/dummy_repo.port";
 
 
 // Get Dummy Usecase
-export const getDummyUsecase = async (DummyRepo :DummyRepositoryPort,id: number,t:EntityManager) => {
+export const getDummyUsecase = async (DummyRepo :DummyRepositoryPort,input:{id?:number},t:EntityManager) => {
     // Retrieve dummy data based on the provided ID
 
-    const selectedDummy: Dummy[] = await DummyRepo.getDummy(id,t);
+    const selectedDummy: Dummy[] = await DummyRepo.getDummy(input.id,t);
     
-    if (id) {
+    if (input.id) {
         // If a dummy with the specified ID exists, return it; otherwise, throw an error
         if (selectedDummy.length) {
             return selectedDummy[0];

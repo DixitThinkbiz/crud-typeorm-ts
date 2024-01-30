@@ -37,7 +37,7 @@ describe("getDummyUsecase", () => {
     (mockDummyRepo.getDummy as jest.Mock).mockResolvedValueOnce(mockDummyData);
 
     // Call the usecase function
-    const result = await getDummyUsecase(mockDummyRepo, 1, mockEntityManager);
+    const result = await getDummyUsecase(mockDummyRepo, {id:1}, mockEntityManager);
 
     // Expect the result to be the same as the mocked dummy data
     expect(result).toEqual(mockDummyData[0]);
@@ -50,7 +50,7 @@ describe("getDummyUsecase", () => {
 
     // Call the usecase function
     await expect(
-      getDummyUsecase(mockDummyRepo, 1, mockEntityManager)
+      getDummyUsecase(mockDummyRepo, {id:1}, mockEntityManager)
     ).rejects.toThrow(constants.ERROR_MESSAGE.USER_NOT_FOUND);
   });
 

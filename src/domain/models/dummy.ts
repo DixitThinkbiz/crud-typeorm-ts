@@ -1,4 +1,3 @@
-import { Request } from "express";
 
 export type Dummy ={
     id : number;
@@ -11,9 +10,6 @@ export type Dummy ={
     id?: number;
     email:string;
     password:string;
+    role:string;
  }
- export interface CustomRequest extends Request  {
-    locals?: {
-        id?:number;
-    };
-  }
+ 

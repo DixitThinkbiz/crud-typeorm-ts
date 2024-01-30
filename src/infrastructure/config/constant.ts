@@ -1,4 +1,9 @@
 export const constants = {
+
+  TIME:{
+    A_TIME:3600,
+    R_TIME:36000
+  },
   SUCCESS_STATUS: {
     OK: 200,
     CREATED: 201,
@@ -25,16 +30,13 @@ export const constants = {
     JWT_NOT_BEFORE_ERROR: "JWT not yet valid.",
     JWT_ERROR: "JWT error occurred.",
     JWT_TOKEN_EXPIRED_ERROR: "JWT token expired."
-    // Add more error messages as needed
   },
 
   SUCCESS_MESSAGE: {
     REQUEST_SUCCEEDED: "Request succeeded.",
     USER_ADDED: "User added successfully.",
     USER_UPDATED: "User updated successfully.",
-    AUTHENTICATION_SUCCESSFUL: "Authentication successful.",
-    // Add more success messages as needed
+    AUTHENTICATION_SUCCESSFUL: "Authentication successful."
   },
 
-  // Add more constants as needed
 };

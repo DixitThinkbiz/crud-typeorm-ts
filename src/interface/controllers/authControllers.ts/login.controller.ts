@@ -18,7 +18,7 @@ export const loginController = (DummyRepo: DummyRepositoryPort) => async (req: R
     })
 
     
-    return res.status(constants.SUCCESS_STATUS.OK).json({token:token})
+    return res.status(constants.SUCCESS_STATUS.OK).json({tokens:token})
 
   } catch (error) {
     // Handle errors, return appropriate status codes and messages
