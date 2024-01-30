@@ -2,10 +2,10 @@
 import { Request, Response } from "express";
 import { getDummyUsecase } from "../../../application/use_cases/dummy/get_dummy.usecase";
 import { constants } from "../../../infrastructure/config/constant";
-import { displayFunction } from "./utils";
 import { EntityManager } from "typeorm";
 import { DummyRepositoryPort } from "../../../application/port/repositories/dummy_repo.port";
 import { CustomRequest } from "../../../domain/models/dummy";
+import { displayFunction } from "../../../infrastructure/helpers/res_display";
 
 
 // Controller for retrieving dummy user information

@@ -14,7 +14,7 @@ export const getDummyUsecase = async (DummyRepo :DummyRepositoryPort,id: number,
     if (id) {
         // If a dummy with the specified ID exists, return it; otherwise, throw an error
         if (selectedDummy.length) {
-            return selectedDummy;
+            return selectedDummy[0];
         } else {
             throw new Error(constants.ERROR_MESSAGE.USER_NOT_FOUND);
         }

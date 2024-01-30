@@ -1,13 +1,14 @@
 // Import necessary modules and controllers
 import express from "express";
 import { getDummyController } from "../controllers/dummyControllers/get_dummy.controllers";
-import { isAuthenticated, validateDummyData} from "./utils";
 import { addDummyController } from "../controllers/dummyControllers/add_dummy.controllers";
 import { deleteDummyController } from "../controllers/dummyControllers/delete_dummy.controller";
 import { updateUserdata } from "../controllers/dummyControllers/update_dummy.controller";
 import { dummySchemaPatch } from "../../domain/schemas/update-dummy.schema";
 import { dummySchemaPost } from "../../domain/schemas/add_dummy.schema";
 import { DummyRepo } from "../../infrastructure/repositories/dummy/dummy.repo";
+import { isAuthenticated } from "../../infrastructure/helpers/middlewares/Authenticate";
+import { validateDummyData } from "../../infrastructure/helpers/middlewares/valiidate";
 
 
 // Create an Express router

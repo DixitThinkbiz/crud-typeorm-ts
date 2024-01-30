@@ -2,7 +2,7 @@
 import { DummyRepositoryPort } from "../../../application/port/repositories/dummy_repo.port";
 import { Dummy, AuthLogin } from "../../../domain/models/dummy";
 import { t_dummy } from "../../orm/typeorm/entities/dummy";
-import { wrapTransaction } from "../../orm/typeorm/utils/transaction";
+import { wrapTransaction } from "../../helpers/transaction";
 
 // Implementation of DummyRepositoryPort using TypeORM
 // Implementation of DummyRepositoryPort using TypeORM

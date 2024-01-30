@@ -40,7 +40,7 @@ describe("getDummyUsecase", () => {
     const result = await getDummyUsecase(mockDummyRepo, 1, mockEntityManager);
 
     // Expect the result to be the same as the mocked dummy data
-    expect(result).toEqual(mockDummyData);
+    expect(result).toEqual(mockDummyData[0]);
   });
 
   // Test case for user not found

@@ -2,17 +2,18 @@
 import { Request, Response } from "express";
 import { deleteDummyUsecase } from "../../../application/use_cases/dummy/delete_dummy.usecase";
 import { constants } from "../../../infrastructure/config/constant";
-import { displayFunction } from "./utils";
+
 import { EntityManager } from "typeorm";
 import { DummyRepositoryPort } from "../../../application/port/repositories/dummy_repo.port";
 import { CustomRequest } from "../../../domain/models/dummy";
+import { displayFunction } from "../../../infrastructure/helpers/res_display";
 
 // Controller for deleting a dummy user
 export const deleteDummyController = (DummyRepo: DummyRepositoryPort) => async (req: CustomRequest, res: Response) => {
   try {
     // Call the deleteDummyUsecase to handle the deletion of the dummy user
     await DummyRepo.wrapTransaction(async (t: EntityManager) => {
-      return await deleteDummyUsecase(DummyRepo, Number(req.locals.id), t)
+      return await deleteDummyUsecase(DummyRepo, Number(res.locals.id), t)
     })
     return displayFunction(constants.SUCCESS_STATUS.OK, res, constants.SUCCESS_MESSAGE.REQUEST_SUCCEEDED)
   } catch (error) {

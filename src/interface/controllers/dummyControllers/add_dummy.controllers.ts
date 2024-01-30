@@ -3,9 +3,9 @@ import { Request, Response } from "express";
 import { addDummyUsecase } from "../../../application/use_cases/dummy/add_dummy.usecase";
 import { Dummy } from "../../../domain/models/dummy";
 import { constants } from "../../../infrastructure/config/constant";
-import { displayFunction } from "./utils";
 import { EntityManager } from "typeorm";
 import { DummyRepositoryPort } from "../../../application/port/repositories/dummy_repo.port";
+import { displayFunction } from "../../../infrastructure/helpers/res_display";
 
 
 // Controller for adding a dummy user

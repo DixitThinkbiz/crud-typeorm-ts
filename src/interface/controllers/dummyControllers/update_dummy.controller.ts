@@ -1,18 +1,18 @@
 // Import necessary modules and use case
-import {  Response } from "express";
+import {  Request, Response } from "express";
 import { updateDummyUsecase } from "../../../application/use_cases/dummy/update__dummy.usecase";
-import { CustomRequest, Dummy } from "../../../domain/models/dummy";
 import { constants } from "../../../infrastructure/config/constant";
-import { displayFunction } from "./utils";
 import { EntityManager } from "typeorm";
+import { displayFunction } from "../../../infrastructure/helpers/res_display";
+import { Dummy } from "../../../domain/models/dummy";
 
 // Controller for updating dummy user data
-export const updateUserdata = (DummyRepo) => async (req: CustomRequest, res: Response) => {
+export const updateUserdata = (DummyRepo) => async (req: Request, res: Response) => {
   try {
     // Call the updateDummyUsecase to handle updating dummy user 
     const dummyData: Dummy = req.body;
     await DummyRepo.wrapTransaction(async (t: EntityManager) => {
-      await updateDummyUsecase(DummyRepo,req.locals.id,dummyData, t);
+      await updateDummyUsecase(DummyRepo,res.locals.id,dummyData, t);
     })
     return displayFunction(constants.SUCCESS_STATUS.OK, res, constants.SUCCESS_MESSAGE.USER_UPDATED);
 

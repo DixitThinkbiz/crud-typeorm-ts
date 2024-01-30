@@ -1,22 +1,22 @@
 // Import necessary modules and configurations
 import express from "express";
-import dotenv from 'dotenv';
 import { AppDataSource } from "../../orm/typeorm/config/ormconfig";
 import { userRouter } from "../../../interface/routes/dummy_routes";
 import "reflect-metadata"
 import swaggerUi from 'swagger-ui-express';
 import { authRouter } from "../../../interface/routes/auth_routes";
 import swaggerDocument from '../../../../swagger/swagger.json';
+import { Env } from "../../helpers/env";
 
 // Load environment variables from the .env file
-dotenv.config();
+
 
 // Create an Express application
 const app = express();
 app.use(express.json());
 
 // Set the port for the server
-const port = process.env.PORT;
+const port = Env.PORT;
 // Define a basic route for testing
 app.get("/", (req, res) => {
   res.send("Working");
