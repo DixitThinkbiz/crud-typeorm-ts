@@ -18,9 +18,6 @@ export type DummyRepositoryPort = {
     entityManager: EntityManager
   ): Promise<void>;
 
-  // Add new dummy data
-  addDummy(dummyData: Dummy, entityManager: EntityManager): Promise<void>;
-
 
   wrapTransaction: <T>(fun: (t: EntityManager) => Promise<T>) => Promise<T>;
 };

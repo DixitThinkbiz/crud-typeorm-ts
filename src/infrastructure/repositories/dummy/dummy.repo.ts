@@ -41,11 +41,9 @@ export const dummuRepo: DummyRepositoryPort = {
   },
 
   // Add new dummy data
-  addDummy: async (dummyData, entityManager) => {
-    await entityManager.getRepository(t_dummy).save(dummyData);
-  },
+ 
 
-  // Check if a dummy with the specified email exists
+  
   
   wrapTransaction,
 };

@@ -6,7 +6,7 @@ import { constants } from "../../config/constant";
 export const validateDummyData =
   (schema: ObjectSchema) =>
   (req: Request, res: Response, next: NextFunction) => {
-    const { error } = schema.validate({ ...req.body, ...req.params });
+    const { error } = schema.validate({ ...req.body, ...req.params , ...req.query});
     // If validation fails, return a 400 Bad Request response with the validation error details
     if (error) {
       return res

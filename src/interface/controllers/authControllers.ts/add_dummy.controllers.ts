@@ -4,17 +4,17 @@ import { addDummyUsecase } from "../../../application/use_cases/dummy/add_dummy.
 import { Dummy } from "../../../domain/models/dummy";
 import { constants } from "../../../infrastructure/config/constant";
 import { EntityManager } from "typeorm";
-import { DummyRepositoryPort } from "../../../application/port/repositories/dummy_repo.port";
 import { displayFunction } from "../../../infrastructure/helpers/res_display";
+import { AuthRepositoryPort } from "../../../application/port/repositories/auth_repo.port";
 
 // Controller for adding a dummy user
 export const addDummyController =
-  (DummyRepo: DummyRepositoryPort) => async (req: Request, res: Response) => {
+  (authRepo: AuthRepositoryPort) => async (req: Request, res: Response) => {
     try {
       // Call the addDummyUsecase to handle adding the dummy user
       const dummyData: Dummy = req.body;
-      await DummyRepo.wrapTransaction(async (t: EntityManager) => {
-        await addDummyUsecase(DummyRepo, dummyData, t);
+      await authRepo.wrapTransaction(async (t: EntityManager) => {
+        await addDummyUsecase(authRepo, dummyData, t);
       });
       return displayFunction(
         constants.SUCCESS_STATUS.CREATED,
