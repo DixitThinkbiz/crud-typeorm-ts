@@ -6,13 +6,12 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 export const isAuthenticated =
   (key: string) => (req: Request, res: Response, next: NextFunction) => {
     try {
-      console.log(req.headers.authorization);
       const token = req.headers.authorization;
 
       const data = jwt.verify(token, key) as JwtPayload;
 
       res.locals.user = { id: data.id, role: data.role };
-
+    
       next();
     } catch (error) {
       console.log(error);

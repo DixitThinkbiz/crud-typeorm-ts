@@ -1,19 +1,20 @@
 // Import necessary modules and entities
 import { DummyRepositoryPort } from "../../../application/port/repositories/dummy_repo.port";
-import { Dummy, AuthLogin } from "../../../domain/models/dummy";
+import { Dummy } from "../../../domain/models/dummy";
 import { t_dummy } from "../../orm/typeorm/entities/dummy";
 import { wrapTransaction } from "../../helpers/transaction";
 
 // Implementation of DummyRepositoryPort using TypeORM
 // Implementation of DummyRepositoryPort using TypeORM
-export const DummyRepo: DummyRepositoryPort = {
+export const dummuRepo: DummyRepositoryPort = {
   // Retrieve dummy data by ID
-  getDummy: async (id, entityManager) => {
+  getDummy: async (id, entityManager,email) => {
     const selectedDummy: Dummy[] = await entityManager
       .getRepository(t_dummy)
       .createQueryBuilder()
-      .select("id, name, email, description")
+      .select("id, name, email,role, description")
       .where(id ? "id = :id" : "true", { id: id })
+      .andWhere(email?{email:email}:"true")
       .getRawMany();
     // Return the selected dummy data
     return selectedDummy as Dummy[];
@@ -45,17 +46,6 @@ export const DummyRepo: DummyRepositoryPort = {
   },
 
   // Check if a dummy with the specified email exists
-  checkDummyEmailExist: async (email, entityManager) => {
-    // Query the t_dummy table to find a user with the given email
-    const selectedDummy = await entityManager
-      .getRepository(t_dummy)
-      .createQueryBuilder()
-      .select("id,email,password,role")
-      .where({ email: email })
-      .getRawOne();
-
-    // Return the selected user data
-    return selectedDummy as AuthLogin;
-  },
+  
   wrapTransaction,
 };
