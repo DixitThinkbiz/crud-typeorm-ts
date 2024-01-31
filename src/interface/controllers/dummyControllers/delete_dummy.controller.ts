@@ -11,11 +11,7 @@ import { displayFunction } from "../../../infrastructure/helpers/res_display";
 export const deleteDummyController =
   (DummyRepo: DummyRepositoryPort) => async (req: Request, res: Response) => {
     try {
-      
-      
-        const id = (req.query.id  && res.locals.user.role=="admin")? +req.query.id :  res.locals.user.id;
-      
-
+        const id =  res.locals.user.role=="admin"? req.query.id?+req.query.id:undefined :  res.locals.user.id;
       // Call the deleteDummyUsecase to handle the deletion of the dummy user
       await DummyRepo.wrapTransaction(async (t: EntityManager) => {
         return await deleteDummyUsecase(

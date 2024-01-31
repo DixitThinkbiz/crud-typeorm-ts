@@ -1,25 +1,22 @@
 // Import necessary function
 import { EntityManager } from "typeorm";
-import { AuthLogin } from "../../../domain/models/dummy";
 import { constants } from "../../../infrastructure/config/constant";
-import { DummyRepositoryPort } from "../../port/repositories/dummy_repo.port";
 import { Env } from "../../../infrastructure/helpers/env";
 import jwt from "jsonwebtoken";
+import { AuthRepositoryPort } from "../../port/repositories/auth_repo.port";
+import { AuthLogin } from "../../../domain/models/auth";
 
 
 // Get Dummy Usecase
 export const loginUsecase = async (
-  DummyRepo: DummyRepositoryPort,
-  dummy: AuthLogin,
+  AuthRepo:AuthRepositoryPort,
+  dummy:AuthLogin ,
   t: EntityManager
 ) => {
-  const selectedDummy: AuthLogin = await DummyRepo.checkDummyEmailExist(
-    dummy.email,
-    t
-  );
-  if (!selectedDummy || selectedDummy.password != dummy.password) {
-    throw new Error(constants.ERROR_MESSAGE.AUTHENTICATION_FAILED);
-  }
+  const selectedDummy=await AuthRepo.loginDetails(dummy, t) 
+  console.log(selectedDummy);
+  
+ if(selectedDummy){
   const accessToken = jwt.sign(
     { id: selectedDummy.id, role: selectedDummy.role },
     Env.ACCESS_KEY,
@@ -34,5 +31,9 @@ export const loginUsecase = async (
       expiresIn: constants.TIME.R_TIME,
     }
   );
+  await AuthRepo.addRefreshToken(refreshToken,selectedDummy.id,t)
   return { accessToken, refreshToken };
+ }
+ throw new Error(constants.ERROR_MESSAGE.AUTHENTICATION_FAILED);
+ 
 };

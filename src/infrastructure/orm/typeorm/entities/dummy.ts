@@ -7,7 +7,8 @@ import {
   UpdateDateColumn,
   DeleteDateColumn,
 } from "typeorm";
-export type UserRoleType = "admin" | "user";
+import { UserRoleType } from "../../../../domain/models/dummy";
+
 // Database entity for the t_dummy table
 @Entity()
 export class t_dummy {
@@ -36,6 +37,9 @@ export class t_dummy {
   // Optional description column
   @Column({ nullable: true })
   description?: string;
+
+  @Column({ nullable: true })
+  refreshToken: string;
 
   // Column for creation timestamp
   @CreateDateColumn()
