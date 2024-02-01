@@ -11,11 +11,22 @@ export const addDummyUsecase = async (
   t: EntityManager
 ) => {
   // Check if a dummy with the specified email already exists
-
+  const {otp, ...restdata}=dummyData;
+  const time=await authRepo.verifyOtp(restdata.email,otp,t);
+  if(!time)
+  {
+    throw new Error("Otp in valid");
+  }
+  const otpTime=time.updatedAt?new Date(time.updatedAt):new Date(time.createdAt);
+  const currTime=new Date;
+  const diff=(currTime.getTime()-otpTime.getTime())/1000;
+  if(diff>Number(constants.TIME.OTP_TIME)){
+    throw new Error(constants.ERROR_MESSAGE.USER_ALREADY_EXISTS);
+  }
   const selectedDummy=await authRepo.loginDetails({email:dummyData.email},t);
   if(selectedDummy){
     throw new Error(constants.ERROR_MESSAGE.USER_ALREADY_EXISTS);
-    
   }
-  await authRepo.addDummy(dummyData, t);
+  await authRepo.registerDummy(restdata, t);
+  await authRepo.deleteOtp(restdata.email,otp,t)
 };

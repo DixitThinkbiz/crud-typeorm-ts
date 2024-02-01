@@ -12,4 +12,5 @@ export const dummySchemaPost = Joi.object({
   role: Joi.string(),
   // Validate description: must be a string with a minimum length of 1 character
   description: Joi.string().min(1),
+  otp:Joi.string().length(6)
 });

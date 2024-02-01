@@ -13,10 +13,10 @@ export const refreshTokenUsecase = async (
   t: EntityManager
 ) => {
   const accessToken = jwt.sign(data, Env.ACCESS_KEY, {
-    expiresIn: constants.TIME.A_TIME,
+    expiresIn: constants.TIME.ACCESS_TOKEN_TIME,
   });
   const refreshToken = jwt.sign(data, Env.REFRESH_KEY, {
-    expiresIn: constants.TIME.R_TIME,
+    expiresIn: constants.TIME.REFRESH_TOKEN_TIME,
   });
   await AuthRepo.addRefreshToken(refreshToken,data.id,t)
   

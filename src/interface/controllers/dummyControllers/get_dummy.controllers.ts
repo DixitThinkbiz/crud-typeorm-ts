@@ -11,16 +11,11 @@ export const getDummyController =
   (DummyRepo: DummyRepositoryPort) => async (req: Request, res: Response) => {
     try {
       //Call the getDummyUsecase to handle retrieving dummy user information
-      const input: { id?: number } = {};
-      if (res.locals.user.role == "admin") {
-        input.id = req.query.id ? +req.query.id : undefined;
-      } else {
-        input.id = res.locals.user.id;
-      }
+      const id =  res.locals.user.role=="admin"? req.query.id?+req.query.id:undefined :  res.locals.user.id;
 
       const selectedDummy = await DummyRepo.wrapTransaction(
         async (t: EntityManager) => {
-          return await getDummyUsecase(DummyRepo, input, t);
+          return await getDummyUsecase(DummyRepo, id, t);
         }
       );
 

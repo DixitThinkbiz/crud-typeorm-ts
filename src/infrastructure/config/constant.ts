@@ -1,7 +1,8 @@
 export const constants = {
   TIME: {
-    A_TIME: 3600,
-    R_TIME: 36000,
+    ACCESS_TOKEN_TIME: 3600,
+    REFRESH_TOKEN_TIME: 36000,
+    OTP_TIME:3600
   },
   SUCCESS_STATUS: {
     OK: 200,
@@ -29,6 +30,7 @@ export const constants = {
     JWT_NOT_BEFORE_ERROR: "JWT not yet valid.",
     JWT_ERROR: "JWT error occurred.",
     JWT_TOKEN_EXPIRED_ERROR: "JWT token expired.",
+    OTP_INVALID:'Invalid OTP. Please enter a valid OTP.'
   },
 
   SUCCESS_MESSAGE: {

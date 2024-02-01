@@ -14,21 +14,20 @@ export const loginUsecase = async (
   t: EntityManager
 ) => {
   const selectedDummy=await AuthRepo.loginDetails(dummy, t) 
-  console.log(selectedDummy);
   
  if(selectedDummy){
   const accessToken = jwt.sign(
     { id: selectedDummy.id, role: selectedDummy.role },
     Env.ACCESS_KEY,
     {
-      expiresIn: constants.TIME.A_TIME,
+      expiresIn: constants.TIME.ACCESS_TOKEN_TIME,
     }
   );
   const refreshToken = jwt.sign(
     { id: selectedDummy.id, role: selectedDummy.role },
     Env.REFRESH_KEY,
     {
-      expiresIn: constants.TIME.R_TIME,
+      expiresIn: constants.TIME.REFRESH_TOKEN_TIME,
     }
   );
   await AuthRepo.addRefreshToken(refreshToken,selectedDummy.id,t)

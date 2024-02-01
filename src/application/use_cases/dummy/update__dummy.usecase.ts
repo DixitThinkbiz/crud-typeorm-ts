@@ -13,7 +13,6 @@ export const updateDummyUsecase = async (
 ) => {
   // Check if the dummy data with the specified ID exists
   const checkDummyExist = await DummyRepo.getDummy(id, t);
-  console.log(checkDummyExist);
   
   // If the dummy data exists
   if (checkDummyExist.length) {

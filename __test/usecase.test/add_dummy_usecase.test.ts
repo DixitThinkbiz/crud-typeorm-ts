@@ -3,7 +3,7 @@ import { EntityManager } from "typeorm";
 import { DummyRepositoryPort } from "../../src/application/port/repositories/dummy_repo.port";
 import { constants } from "../../src/infrastructure/config/constant";
 import { AuthLogin, Dummy } from "../../src/domain/models/dummy";
-import { addDummyUsecase } from "../../src/application/use_cases/dummy/add_dummy.usecase";
+import { addDummyUsecase } from "../../src/application/use_cases/authUsecase/register_dummy.usecase";
 
 // Mock DummyRepositoryPort
 const mockDummyRepo: DummyRepositoryPort = {

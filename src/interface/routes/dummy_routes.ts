@@ -1,7 +1,7 @@
 // Import necessary modules and controllers
 import express from "express";
 import { getDummyController } from "../controllers/dummyControllers/get_dummy.controllers";
-import { addDummyController } from "../controllers/authControllers.ts/add_dummy.controllers";
+import { registerDummyController } from "../controllers/authControllers.ts/register_dummy.controllers";
 import { deleteDummyController } from "../controllers/dummyControllers/delete_dummy.controller";
 import { updateUserdata } from "../controllers/dummyControllers/update_dummy.controller";
 import { dummySchemaPatch } from "../../domain/schemas/update-dummy.schema";
@@ -10,7 +10,7 @@ import { dummuRepo } from "../../infrastructure/repositories/dummy/dummy.repo";
 import { isAuthenticated } from "../../infrastructure/helpers/middlewares/Authenticate";
 import { validateDummyData } from "../../infrastructure/helpers/middlewares/valiidate";
 import { Env } from "../../infrastructure/helpers/env";
-import { idSchema } from "../../domain/schemas/dummy_is.schema";
+import { idSchema } from "../../domain/schemas/dummy_id.schema";
 
 // Create an Express router
 export const userRouter = express.Router();

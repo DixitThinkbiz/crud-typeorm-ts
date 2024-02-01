@@ -25,7 +25,6 @@ export const refreshTokenController =
           );
         }
       }
-      console.log(error);
       return displayFunction(
         constants.ERROR_STATUS.INTERNAL_SERVER_ERROR,
         res,
